@@ -3,15 +3,26 @@
   type="text/javascript"
 ></script>
 <script>
+  var startMessage = {
+    type: "text/plain",
+    content: "start",
+    metadata: {
+      "#blip.hiddenMessage": true
+    }
+  };
+
   (function() {
     window.onload = function() {
-      new BlipChat()
+      var BlipClient = new BlipChat()
         .withAppKey(
           "Y2hlZ291b25vdm86ZDc4Mzg0OWYtYTgyYi00OTJjLThkMGItNTYzYzhhYTliNDU4"
         )
         .withCustomCommonUrl("https://chat.blip.ai")
         .withTarget("blip")
-        .build();
+        .withEventHandler(BlipChat.CREATE_ACCOUNT_EVENT, function() {
+          BlipClient.sendMessage(startMessage);
+        })
+        BlipClient.build();
     };
   })();
 </script>
