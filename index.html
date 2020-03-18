@@ -1,28 +1,40 @@
-<script
-  src="https://unpkg.com/blip-chat-widget"
-  type="text/javascript"
-></script>
-<script>
-  var startMessage = {
-    type: "text/plain",
-    content: "start",
-    metadata: {
-      "#blip.hiddenMessage": true
-    }
-  };
-
-  (function() {
-    window.onload = function() {
-      var BlipClient = new BlipChat()
-        .withAppKey(
-          "Y2hlZ291b25vdm86ZDc4Mzg0OWYtYTgyYi00OTJjLThkMGItNTYzYzhhYTliNDU4"
-        )
-        .withTarget("blip")
-        .withEventHandler(BlipChat.CREATE_ACCOUNT_EVENT, function() {
-          BlipClient.sendMessage(startMessage);
-        })
-        BlipClient.build();
+<html lang="pt_br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>
+      Atendimento Online Claro
+    </title>
+  </head>
+  <body>
+    <div id="blip"></div>
+  </body>
+  <script
+    src="https://unpkg.com/blip-chat-widget"
+    type="text/javascript"
+  ></script>
+  <script>
+    var startMessage = {
+      type: "text/plain",
+      content: "start",
+      metadata: {
+        "#blip.hiddenMessage": true
+      }
     };
-  })();
-</script>
-<div id="blip"></div>
+
+    (function() {
+      window.onload = function() {
+        var BlipClient = new BlipChat()
+          .withAppKey(
+            "Y2hlZ291b25vdm86ZDc4Mzg0OWYtYTgyYi00OTJjLThkMGItNTYzYzhhYTliNDU4"
+          )
+          .withTarget("blip")
+          .withEventHandler(BlipChat.CREATE_ACCOUNT_EVENT, function() {
+            BlipClient.sendMessage(startMessage);
+          });
+        BlipClient.build();
+      };
+    })();
+  </script>
+</html>
