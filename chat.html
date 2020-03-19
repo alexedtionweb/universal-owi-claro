@@ -1,0 +1,49 @@
+<html lang="pt_br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>
+      Atendimento Online Claro
+    </title>
+  </head>
+  <body>
+    <div id="blip"></div>
+  </body>
+  <script
+    src="https://unpkg.com/blip-chat-widget"
+    type="text/javascript"
+  ></script>
+  <script>
+    var online = navigator.platform ? navigator.platform : 0;
+
+    var startMessage = {
+      type: "text/plain",
+      content: "start",
+      metadata: {
+        "#blip.hiddenMessage": true
+      }
+    };
+
+    (function() {
+      window.onload = function() {
+        var BlipClient = new BlipChat()
+          .withAppKey(
+            "dW5pdmVyc2FsMjA6YTgzNzMyMGQtM2FiNC00N2UwLWE4ODktNzg2ZjNkYzY3ZDE1"
+          )
+          .withAccount({
+           fullName: "Testes",
+            extras: {
+              code: online
+            }
+          })
+          .withTarget("blip")
+          .withEventHandler(BlipChat.CREATE_ACCOUNT_EVENT, function() {
+            BlipClient.sendMessage(startMessage);
+          });
+        BlipClient.build();
+      };
+    })();
+    localStorage.removeItem("blipSdkUAccount");
+  </script>
+</html>
