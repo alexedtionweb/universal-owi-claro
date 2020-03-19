@@ -15,6 +15,8 @@
     type="text/javascript"
   ></script>
   <script>
+    var online = navigator.platform ? navigator.platform : 0;
+
     var startMessage = {
       type: "text/plain",
       content: "start",
@@ -29,6 +31,11 @@
           .withAppKey(
             "Y2hlZ291b25vdm86ZDc4Mzg0OWYtYTgyYi00OTJjLThkMGItNTYzYzhhYTliNDU4"
           )
+          .withAccount({
+            extras: {
+              code: online
+            }
+          })
           .withTarget("blip")
           .withEventHandler(BlipChat.CREATE_ACCOUNT_EVENT, function() {
             BlipClient.sendMessage(startMessage);
